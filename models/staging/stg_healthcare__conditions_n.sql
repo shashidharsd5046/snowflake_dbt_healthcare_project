@@ -1,16 +1,8 @@
 -- stg_healthcare__conditions.sql
--- Staged condition records from healthcare stage CSV
+-- Staged condition records from healthcare source
 
 with source as (
-    select
-        $1 as start_date,
-        $2 as stop_date,
-        $3 as patient_id,
-        $4 as encounter_id,
-        $5 as code,
-        $6 as description
-    from @HEALTHCARE_DATE.PUBLIC.HEALTHCARE_STAGE/conditions.csv
-        (file_format => 'HEALTHCARE_DATE.PUBLIC.csv_data')
+    select * from {{ source('healthcare_raw', 'conditions') }}
 ),
 
 staged as (

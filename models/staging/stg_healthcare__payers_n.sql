@@ -1,20 +1,8 @@
 -- stg_healthcare__payers.sql
--- Staged payer records from healthcare stage CSV
+-- Staged payer records from healthcare source
 
 with source as (
-    select
-        $1 as payer_id,
-        $2 as name,
-        $3 as address,
-        $4 as city,
-        $5 as state_headquartered,
-        $6 as zip,
-        $7 as phone,
-        $8 as amount_covered,
-        $9 as amount_uncovered,
-        $10 as revenue
-    from @HEALTHCARE_DATE.PUBLIC.HEALTHCARE_STAGE/payers.csv
-        (file_format => 'HEALTHCARE_DATE.PUBLIC.csv_data')
+    select * from {{ source('healthcare_raw', 'payers') }}
 ),
 
 staged as (

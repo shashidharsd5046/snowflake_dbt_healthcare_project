@@ -6,5 +6,13 @@ sources:
     database: HEALTHCARE_DATE
     schema: PUBLIC
     tables:
-      - name: healthcare_stage
-        description: Internal stage containing patients, conditions, procedures, payers, and payer_transitions CSVs
+      - name: patients
+        description: Patient records
+      - name: conditions
+        description: Patient conditions
+      - name: procedures
+        description: Patient procedures
+      - name: payers
+        description: Payer information
+      - name: payer_transitions
+        description: Payer transition data

@@ -1,15 +1,8 @@
 -- stg_healthcare__payer_transitions.sql
--- Staged payer transition records from healthcare stage CSV
+-- Staged payer transition records from healthcare source
 
 with source as (
-    select
-        $1 as patient_id,
-        $2 as start_year,
-        $3 as end_year,
-        $4 as payer_id,
-        $5 as ownership
-    from @HEALTHCARE_DATE.PUBLIC.HEALTHCARE_STAGE/payer_transitions.csv
-        (file_format => 'HEALTHCARE_DATE.PUBLIC.csv_data')
+    select * from {{ source('healthcare_raw', 'payer_transitions') }}
 ),
 
 staged as (

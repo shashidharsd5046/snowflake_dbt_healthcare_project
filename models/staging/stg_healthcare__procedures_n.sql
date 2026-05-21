@@ -1,18 +1,8 @@
 -- stg_healthcare__procedures.sql
--- Staged procedure records from healthcare stage CSV
+-- Staged procedure records from healthcare source
 
 with source as (
-    select
-        $1 as procedure_date,
-        $2 as patient_id,
-        $3 as encounter_id,
-        $4 as code,
-        $5 as description,
-        $6 as base_cost,
-        $7 as reasoncode,
-        $8 as reasondescription
-    from @HEALTHCARE_DATE.PUBLIC.HEALTHCARE_STAGE/procedures.csv
-        (file_format => 'HEALTHCARE_DATE.PUBLIC.csv_data')
+    select * from {{ source('healthcare_raw', 'procedures') }}
 ),
 
 staged as (
