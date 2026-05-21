@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: healthcare_raw
+    description: Raw healthcare CSV data loaded into an internal stage
+    database: HEALTHCARE_DATE
+    schema: PUBLIC
+    tables:
+      - name: healthcare_stage
+        description: Internal stage containing patients, conditions, procedures, payers, and payer_transitions CSVs

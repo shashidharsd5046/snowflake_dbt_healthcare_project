@@ -1,0 +1,16 @@
+# profiles.yml — Healthcare dbt project
+
+coco_workshop:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "PGVOJHP-AD84474"
+      user: "SAMEENPUR"
+      password: "{{ env_var('DBT_SNOWFLAKE_PASSWORD') }}"
+      authenticator: snowflake
+      role: ACCOUNTADMIN
+      warehouse: COMPUTE_WH
+      database: HEALTHCARE_DATE
+      schema: PUBLIC
+      threads: 4

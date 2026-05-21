@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: mart_condition_cost_by_payer
+    description: >
+      Healthcare mart showing total procedure cost by procedure grouped by payer.
+      Grain: one row per payer + procedure combination.
+    columns:
+      - name: payer_name
+        tests:
+          - not_null
+      - name: procedure_code
+        tests:
+          - not_null
+      - name: procedure_description
+        tests:
+          - not_null
+      - name: total_patients
+        tests:
+          - not_null
+      - name: total_procedures
+        tests:
+          - not_null
+      - name: total_cost
+        tests:
+          - not_null

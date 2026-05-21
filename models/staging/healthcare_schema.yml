@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: stg_healthcare__patients_n
+    description: Cleaned patient demographics from healthcare stage
+    columns:
+      - name: patient_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_healthcare__conditions_n
+    description: Patient conditions/diagnoses from healthcare stage
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+
+  - name: stg_healthcare__procedures_n
+    description: Medical procedures with costs from healthcare stage
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+      - name: encounter_id
+        tests:
+          - not_null
+      - name: base_cost
+        tests:
+          - not_null
+
+  - name: stg_healthcare__payers_n
+    description: Insurance payer reference data from healthcare stage
+    columns:
+      - name: payer_id
+        tests:
+          - unique
+          - not_null
+      - name: payer_name
+        tests:
+          - not_null
+
+  - name: stg_healthcare__payer_transitions_n
+    description: Patient payer enrollment history from healthcare stage
+    columns:
+      - name: patient_id
+        tests:
+          - not_null
+      - name: payer_id
+        tests:
+          - not_null
