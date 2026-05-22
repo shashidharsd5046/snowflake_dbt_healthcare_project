@@ -24,3 +24,28 @@ models:
       - name: total_cost
         tests:
           - not_null
+
+  - name: mart_patient_procedure_summary
+    description: >
+      Healthcare mart summarizing procedure count, total procedure cost, and average cost per patient.
+      Grain: One row per patient.
+    columns:
+      - name: patient_id
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        tests:
+          - not_null
+      - name: last_name
+        tests:
+          - not_null
+      - name: total_procedures
+        tests:
+          - not_null
+      - name: total_procedure_cost
+        tests:
+          - not_null
+      - name: avg_procedure_cost
+        tests:
+          - not_null
