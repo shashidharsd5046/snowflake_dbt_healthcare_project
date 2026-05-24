@@ -12,6 +12,16 @@ This repository contains a modern **dbt (Data Build Tool)** analytics engineerin
 
 The pipeline implements a clean, decoupled **three-layer architecture** across separate Snowflake schemas to guarantee data quality, maintainability, and performance.
 
+### Data Lineage
+
+| Mart Model | Staging Dependencies |
+| :--- | :--- |
+| `mart_condition_cost_by_payer` | `stg_procedures_n` → `stg_payer_transitions_n` → `stg_payers_n` |
+| `mart_patient_procedure_summary` | `stg_patients_n` → `stg_procedures_n` |
+| `mart_payer_procedure_cost_summary` | `stg_procedures_n` → `stg_payer_transitions_n` → `stg_payers_n` |
+
+> **Note:** `stg_healthcare__conditions_n` is staged but not yet consumed by any mart model. It is available for future analytics use cases (e.g., condition-based cohort analysis).
+
 | Layer | Schema | Materialization | Purpose |
 | :--- | :--- | :--- | :--- |
 | **Raw** | `PUBLIC` | Source Tables | Raw CSV data loaded into Snowflake |
